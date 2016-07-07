@@ -2,8 +2,8 @@
 var gameScene = cc.Scene.extend({
   onEnter: function() {
 
-    var backgroundLayer = new cc.LayerColor(new cc.Color(140, 200, 140, 128));
-    this.addChild(backgroundLayer);
+    var gradient = cc.LayerGradient.create(cc.color(0, 0, 0, 255), cc.color(0x46, 0x82, 0xB4, 255));
+    this.addChild(gradient);
 
     this._super();
     gameLayer = new game();
@@ -12,11 +12,16 @@ var gameScene = cc.Scene.extend({
   }
 });
 
+var size;
+var mylabel;
 var game = cc.Layer.extend({
   init: function() {
     this._super();
-    var gradient = cc.LayerGradient.create(cc.color(0, 0, 0, 255), cc.color(0x46, 0x82, 0xB4, 255));
-    this.addChild(gradient);
+    size = cc.director.getWinSize();
+    mylabel = cc.LabelTTF.create("GO!", "Arial", "32");
+    mylabel.setPosition(size.width / 2, size.height / 2);
+    this.addChild(mylabel);
 
-  }
+  },
+
 });

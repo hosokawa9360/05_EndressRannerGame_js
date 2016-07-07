@@ -1,12 +1,14 @@
-## plugin の起動
-git-plus ： Ctrl-Shift-H  :git-plusのパネルを表示
-Atom Beautify ：ctrl-alt-b　:　自動整形  
-atom-html-preview ：ctrl-shift-H : htmlﾌｧｲﾙをプレビュー  
-browser-plus : ctrl + alt + o  : ブラウザの起動
-
 ##  atom keybindings
-Markdownのプレービュー表示 control + shift + M  
-コメントアウト	Ct：rl + /  
+- 移動・選択・削除  
+★最初の行に移動	Ctrl + Home	 
+★最後の行に移動	Ctrl + End
+★行をコメントアウト	Ctrl + /
+
+★行を削除　 Shift + delete
+
+★行を直下に複写	Ctrl + Shift + d
+
+
 単語を選択　Ctrl + D　：※入力ごとに同じ単語を選択  
 単語の末尾に移動 Alt + F  
 単語の先頭に移動 Alt + B  
@@ -94,6 +96,8 @@ Atomを閉じる	Ctrl + Shift + W
 scriptを実行	Ctrl + Shift + B  
 scriptを停止	Ctrl + q  
 Atomプレビューを開く／閉じる	Ctrl + Shift + M  
+Markdownのプレービュー表示 control + shift + M  
+コメントアウト	Ct：rl + /  
 
 #### その他  
 コマンドパレットの表示/非標示 Ctrl + Shift + P  
@@ -105,3 +109,8 @@ open(開く) :ctrl-alt-o :git-controlと競合してい  るkeybind
 close(閉じる)  :ctrl+w (atomの閉じるコマンド)    
 history（履歴） :ctrl-alt-h:    
 openDevTool（開発ツール）:f12  
+## plugin の起動
+git-plus ： Ctrl-Shift-H  :git-plusのパネルを表示
+Atom Beautify ：ctrl-alt-b　:　自動整形  
+atom-html-preview ：ctrl-shift-H : htmlﾌｧｲﾙをプレビュー  
+browser-plus : ctrl + alt + o  : ブラウザの起動
