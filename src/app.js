@@ -21,7 +21,5 @@ var game = cc.Layer.extend({
     mylabel = cc.LabelTTF.create("GO!", "Arial", "32");
     mylabel.setPosition(size.width / 2, size.height / 2);
     this.addChild(mylabel);
-
-  },
-
+  }
 });
