@@ -7,7 +7,7 @@
 ★行を削除　 Shift + delete
 
 ★行を直下に複写	Ctrl + Shift + d
-★全てのファイルをgit addとcommit,pushるctrl-Shift-A p
+★git<add .>+<commit>+<push> ctrl-Shift-A p
 
 単語を選択　Ctrl + D　：※入力ごとに同じ単語を選択  
 単語の末尾に移動 Alt + F  
