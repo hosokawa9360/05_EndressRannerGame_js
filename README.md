@@ -316,15 +316,61 @@ function restartGame(){
 }
   ```
 また、衝突判定の処理にも、この`invulnerability`を利用して衝突が発生していないときのみ（`invulnerability`が0）に衝突判定を行うようにします。
+```
   if(cc.rectIntersectsRect(shipBoundingBox,asteroidBoundingBox)&&ship.invulnerability==0){
-    ```
 ```
 これによって、`invulnerability`が０より大きな値になっている間は、宇宙船は小惑星と衝突して破壊されないことになります。  
 一般的に無敵モード中の自機は半透明な表示や半透明で点滅表示がなされることが多いですね。これは、プレイヤーに無敵モード中であることをお知らせするためのゲームシステムからの視覚的なフィードバックです。  
-shipクラスのupdate関数に次の2行を追加しましょう。
+shipクラスのupdate関数に次の2行を追加しましょう。  
 ```
     if(this.invulnerability>0){
           this.invulnerability ;
           this.setOpacity(255- this.getOpacity());
       }
 ```  
+
+### 8.宇宙船が画面から飛び出すことを防止する
+### 9.パーティクルを追加する
+最後に、画面外に宇宙船が飛び出すことを防止します。マウスをずっと押していたり、ずっと離していたりしていると、宇宙船は画面の上や下からそのまま外に出てしまいます。  
+この対処としては、画面外に出てしまった場合には、宇宙船が破壊されたことにします。  shipクラスに次のコードを追加します。
+
+```　
+this.ySpeed += gameGravity;
+
+//宇宙船が画面外にでたら、リスタートさせる追加コード
+if (this.getPosition().y < 0 || this.getPosition().y > 320) {
+  restartGame();
+}
+```
+
+## 9.パーティクルを追加する
+パーティクルはゲームに臨場感を与える重要なエフェクトです。  　　
+パーティクルを作るには、cocosと互換性がある　「particle2dx」やもちろん「Cocos　Studio」を利用するのがいいでしょう。  
+まず、新しいグローバル変数を追加します。
+ ```
+var emitter;
+```
+パーティクルエミッタをgameのinit関数で作成して設定します。
+```
+        this.addChild(ship);
+        //ここから
+        emitter = cc.ParticleSun.create();
+        this.addChild(emitter,1);
+        var myTexture = cc.textureCache.addImage(res.particle_png);
+        emitter.setTexture(myTexture);
+        emitter.setStartSize(2);
+        emitter.setEndSize(4);
+```
+これは、サン・エフェクトといって太陽のまぶしさのエフェクトです。  
+画像の設定と、開始時、終了時のサイズを設定しています。  
+このエフェクトをshipクラスのupdateY関数に設定し、宇宙船のエンジンが動作しているときのみエフェクトが見えるようにします。
+```
+if (this.engineOn) {
+  this.ySpeed += gameThrust;
+  //ここでパーティクルエフェクトを宇宙船のすぐ後ろに配置している
+  emitter.setPosition(this.getPosition().x - 25, this.getPosition().y);
+} else {
+  //エンジンOffのときは画面外に配置
+  emitter.setPosition(this.getPosition().x - 250, this.getPosition().y);
+}
+```

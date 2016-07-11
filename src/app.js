@@ -54,7 +54,13 @@ var game = cc.Layer.extend({
     this.scheduleUpdate();
     //小惑星の生成で追加
     this.schedule(this.addAsteroid, 0.5);
-
+    //ここからパーティクルの設定
+    emitter = cc.ParticleSun.create();
+    this.addChild(emitter,1);
+    var myTexture = cc.textureCache.addImage(res.particle_png);
+    emitter.setTexture(myTexture);
+    emitter.setStartSize(2);
+    emitter.setEndSize(4);
   },
   update: function(dt) {
     //backgroundのscrollメソッドを呼び出す
@@ -111,6 +117,11 @@ var Ship = cc.Sprite.extend({
     //宇宙船を操作するで追加した部分
     if (this.engineOn) {
       this.ySpeed += gameThrust;
+      //ここでパーティクルエフェクトを宇宙船のすぐ後ろに配置している
+      emitter.setPosition(this.getPosition().x - 25, this.getPosition().y);
+    } else {
+      //エンジンOffのときは画面外に配置
+      emitter.setPosition(this.getPosition().x - 250, this.getPosition().y);
     }
     //ここまで
 
@@ -123,6 +134,11 @@ var Ship = cc.Sprite.extend({
 
     this.setPosition(this.getPosition().x, this.getPosition().y + this.ySpeed);
     this.ySpeed += gameGravity;
+
+    //宇宙船が画面外にでたら、リスタートさせる
+    if (this.getPosition().y < 0 || this.getPosition().y > 320) {
+      restartGame();
+    }
   }
 });
 //小惑星クラス
