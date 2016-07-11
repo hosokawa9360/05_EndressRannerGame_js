@@ -166,7 +166,7 @@ update:function(dt){
  });
  ```
 
- ## 5.宇宙船を操作する
+## 5.宇宙船を操作する
  プレイヤーが画面上をマウスで押さえることで、宇宙船に推進力（上昇）を与えるようにします。
 
  ##### 新しく追加した部分　  12行目以降
@@ -209,3 +209,96 @@ if(this.engineOn){
   this.ySpeed += gameThrust;
 }
 ```
+
+## 6.小惑星を追加する
+背景がスクロールすることにより、宇宙船はが左から右に飛んでいるように見せているので、小惑星がゲームの画面の右から突入しているように画面に追加する。  
+小惑星の突入アニメーションは、背景のスクロールと同じように、いくつかの小惑星の画像を画面の右に配置し、左に向かって動かすことで表現が可能ですが、今回は、「アクション」というスプライトの動きを制御する方法を習得します。  
+
+#### その1　小惑星の生成
+
+```
+//小惑星クラス
+var Asteroid = cc.Sprite.extend({
+  ctor: function() {
+    this._super();
+    this.initWithFile(res.asteroid_png);
+  },
+  onEnter: function() {
+    this._super();
+    this.setPosition(600, Math.random() * 320);
+    // #####　ここに注目!!
+    var moveAction = cc.MoveTo.create(2.5, new cc.Point(-100, Math.random() * 320));　
+    this.runAction(moveAction);
+    this.scheduleUpdate();
+  },
+  update: function(dt) {
+    if (this.getPosition().x < -50) {
+      gameLayer.removeAsteroid(this)
+    }
+  }
+});
+```
+ - いままでと同じく、ctorコンストラクタでは、画像を読み込んでいます。  
+ - `onEnter`関数では、まず、小惑星を画面の右端にランダムな高さで配置しています。`this.setPosition(600, Math.random() * 320);`  
+ - 次の行　`var moveAction = cc.MoveTo.create(2.5, new cc.Point(-100, Math.random() * 320));　` は小惑星のアニメーションの移動アクションで、2.5秒後に、画面左方向のy座標ランダムな位置に移動するものです。  
+ - アクションを作成したら、`this.runAction(moveAction);`で実行させます。
+ - 最後にスケジュール呼び出しを行って、画面の左側から外に出た小惑星を削除しています。
+ ```
+ this.scheduleUpdate();
+},
+update: function(dt) {
+  //画面の外に出たら
+ if (this.getPosition().x < -50) {
+   //gameLayerの関数で削除する
+   gameLayer.removeAsteroid(this)
+ }
+}
+});
+```  
+
+## 6.小惑星と宇宙船の衝突判定を行う
+今回のようなシンプルなゲーム作成において、２つのスプライトが重なっているかどうかを判定するための最も簡単な方法は、矩形による判定です。矩形による判定とは、スプライトの矩形の境界線が交わっているかどうかをチェックするという方法です。  
+この場合、画像ﾌｧｲﾙは対象の画像だけが含まれる最小の長方形となっていることが必要です。  
+この衝突判定には、以下(isuues #1　で画像を掲載)の３つのケースでの判定がなされます。  
+ケース1.矩形交わらないので、衝突していません。  
+ケース2.矩形が交わっており、衝突しています。  
+ケース3.矩形が交わっているが、透明部分が重なっているのみで、衝突していません。  
+
+洗練された衝突判定では、ケース3.のように矩形が交差していてもピクセル単位で衝突判定を行うことがプログラミングによって可能ですが、ここではそのようなハイレベルな衝突判定はおこないません。  
+矩形による衝突判定のみを使う場合にケース3.のような状況を避けたいときは、スプライトをできるだけ長方形に近い形にすることや、元の画像より小さい矩形で衝突判定を行うことが有効です。  また、プレイヤーも衝突を回避することを願っているので、そのまま矩形による衝突判定をするよりも、多少回避よりの判定にするほうが好ましいです。  
+
+  小惑星のupdate関数での衝突判定のコード
+
+````
+update: function(dt) {
+  //小惑星との衝突を判定する処理
+  var shipBoundingBox = ship.getBoundingBox();
+  var asteroidBoundingBox = this.getBoundingBox();
+  //rectIntersectsRectは２つの矩形が交わっているかチェックする
+  if (cc.rectIntersectsRect(shipBoundingBox, asteroidBoundingBox) ) {
+    gameLayer.removeAsteroid(this);//小惑星を削除する
+    restartGame();
+  }
+  //画面の外にでた小惑星を消去する処理
+  if (this.getPosition().x < -50) {
+    gameLayer.removeAsteroid(this)
+  }
+}
+});
+
+```  
+- getBoundingBox 関数はそのスプライトの矩形を返却します。
+- rectIntersectsRect　関数は２つの矩形が交わっているかどうかをチェックします。
+- 衝突が判定されたら`gameLayer.removeAsteroid(this);`で、衝突した小惑星を消去します。
+- そのあと、restartGame();関数を呼んで、宇宙船の変数を初期化します。
+
+```
+//宇宙船を元の位置に戻して、宇宙船の変数を初期化する
+function restartGame(){
+  ship.ySpeed = 0;
+  ship.setPosition(ship.getPosition().x,160);
+  ship.invulnerability=100;
+}
+
+```
+この方法を実装すると、ゲームがリセットされて宇宙船が初期位置に戻ったときに運悪く小惑星が正面に飛んできていたら、ゲームが始まったとたんにまたゲームオバーです。これでは洗練されたゲームとはいえませんので、一般的なゲームリセット時によく使われる一定時間の無敵モードを実装しましょう。  

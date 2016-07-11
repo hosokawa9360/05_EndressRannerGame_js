@@ -34,14 +34,14 @@ var game = cc.Layer.extend({
 
     //宇宙船を操作するで追加した部分
     cc.eventManager.addListener({
-            event: cc.EventListener.MOUSE,
-            onMouseDown: function(event){
-                ship.engineOn = true;
-            },
-            onMouseUp: function(event){
-                ship.engineOn = false;
-            }
-        },this)
+      event: cc.EventListener.MOUSE,
+      onMouseDown: function(event) {
+        ship.engineOn = true;
+      },
+      onMouseUp: function(event) {
+        ship.engineOn = false;
+      }
+    }, this)
 
     //スクロールする背景スプライトをインスタンス　スクロール速度:scrollSpeed
     background = new ScrollingBG();
@@ -52,12 +52,22 @@ var game = cc.Layer.extend({
 
     //scheduleUpdate関数は、描画の都度、update関数を呼び出す
     this.scheduleUpdate();
+    //小惑星の生成で追加
+    this.schedule(this.addAsteroid, 0.5);
 
   },
   update: function(dt) {
     //backgroundのscrollメソッドを呼び出す
     background.scroll();
     ship.updateY();
+  },
+  //小惑星の生成で追加
+  addAsteroid: function(event) {
+    var asteroid = new Asteroid();
+    this.addChild(asteroid);
+  },
+  removeAsteroid: function(asteroid) {
+    this.removeChild(asteroid);
   },
 
 });
@@ -90,19 +100,53 @@ var Ship = cc.Sprite.extend({
     this._super();
     this.initWithFile(res.ship_png);
     this.ySpeed = 0; //宇宙船の垂直速度
-      //宇宙船を操作するで追加した部分
+    //宇宙船を操作するで追加した部分
     this.engineOn = false; //カスタム属性追加　宇宙船のエンジンのON OFF
   },
   onEnter: function() {
     this.setPosition(60, 160);
   },
   updateY: function() {
-//宇宙船を操作するで追加した部分
-if(this.engineOn){
-    this.ySpeed += gameThrust;
-}
-//ここまで
+    //宇宙船を操作するで追加した部分
+    if (this.engineOn) {
+      this.ySpeed += gameThrust;
+    }
+    //ここまで
     this.setPosition(this.getPosition().x, this.getPosition().y + this.ySpeed);
     this.ySpeed += gameGravity;
   }
 });
+//小惑星クラス
+var Asteroid = cc.Sprite.extend({
+  ctor: function() {
+    this._super();
+    this.initWithFile(res.asteroid_png);
+  },
+  onEnter: function() {
+    this._super();
+    this.setPosition(600, Math.random() * 320);
+    var moveAction = cc.MoveTo.create(2.5, new cc.Point(-100, Math.random() * 320));
+    this.runAction(moveAction);
+    this.scheduleUpdate();
+  },
+  update: function(dt) {
+    //小惑星との衝突を判定する処理
+    var shipBoundingBox = ship.getBoundingBox();
+    var asteroidBoundingBox = this.getBoundingBox();
+		//rectIntersectsRectは２つの矩形が交わっているかチェックする
+    if (cc.rectIntersectsRect(shipBoundingBox, asteroidBoundingBox) ) {
+      gameLayer.removeAsteroid(this);//小惑星を削除する
+      restartGame();
+    }
+		//画面の外にでた小惑星を消去する処理
+    if (this.getPosition().x < -50) {
+      gameLayer.removeAsteroid(this)
+    }
+  }
+});
+//宇宙船を元の位置に戻して、宇宙船の変数を初期化する
+function restartGame(){
+    ship.ySpeed = 0;
+    ship.setPosition(ship.getPosition().x,160);
+    ship.invulnerability=100;
+}
