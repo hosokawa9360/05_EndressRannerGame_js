@@ -6,6 +6,9 @@ var mylabel;
 var gameLayer;
 var background;
 var scrollSpeed = 1;
+//宇宙船で追加した部分
+var ship;
+var gameGravity = -0.05;
 
 var gameScene = cc.Scene.extend({
     onEnter:function () {
@@ -29,6 +32,10 @@ var game = cc.Layer.extend({
         //スクロールする背景スプライトをインスタンス　スクロール速度:scrollSpeed
         background = new ScrollingBG();
         this.addChild(background);
+
+        ship = new Ship();
+        this.addChild(ship);
+
         //scheduleUpdate関数は、描画の都度、update関数を呼び出す
         this.scheduleUpdate();
 
@@ -36,7 +43,7 @@ var game = cc.Layer.extend({
     update:function(dt){
       //backgroundのscrollメソッドを呼び出す
         background.scroll();
-
+        ship.updateY();
     },
 
 });
@@ -60,5 +67,23 @@ var ScrollingBG = cc.Sprite.extend({
         if(this.getPosition().x<0){
             this.setPosition(this.getPosition().x+480,this.getPosition().y);
         }
+    }
+});
+
+//重力（仮）で落下する　宇宙船　
+var Ship = cc.Sprite.extend({
+    ctor:function() {
+        this._super();
+        this.initWithFile(res.ship_png);
+        this.ySpeed = 0;
+      //  this.engineOn = false;
+      //  this.invulnerability = 0;
+    },
+    onEnter:function() {
+        this.setPosition(60,160);
+    },
+    updateY:function() {
+        this.setPosition(this.getPosition().x,this.getPosition().y+this.ySpeed);
+        this.ySpeed += gameGravity;
     }
 });
