@@ -269,7 +269,7 @@ update: function(dt) {
 
   小惑星のupdate関数での衝突判定のコード
 
-````
+```
 update: function(dt) {
   //小惑星との衝突を判定する処理
   var shipBoundingBox = ship.getBoundingBox();
@@ -302,3 +302,29 @@ function restartGame(){
 
 ```
 この方法を実装すると、ゲームがリセットされて宇宙船が初期位置に戻ったときに運悪く小惑星が正面に飛んできていたら、ゲームが始まったとたんにまたゲームオバーです。これでは洗練されたゲームとはいえませんので、一般的なゲームリセット時によく使われる一定時間の無敵モードを実装しましょう。  
+
+## 7.無敵モードの実装
+まず、Shipクラスのctorコンストラクタに、無敵モードの時間属性（`invulnerability`）を追加します。  
+  `this.invulnerability = 0;`  
+`invulnerability`は、小惑星と衝突しないときは0ですが、衝突が発生すると
+restartGame()で `ship.invulnerability=100;`と100に設定されます。
+```
+function restartGame(){
+    ship.ySpeed = 0;
+    ship.setPosition(ship.getPosition().x,160);
+    ship.invulnerability=100;//無敵モード時間
+}
+  ```
+また、衝突判定の処理にも、この`invulnerability`を利用して衝突が発生していないときのみ（`invulnerability`が0）に衝突判定を行うようにします。
+  if(cc.rectIntersectsRect(shipBoundingBox,asteroidBoundingBox)&&ship.invulnerability==0){
+    ```
+```
+これによって、`invulnerability`が０より大きな値になっている間は、宇宙船は小惑星と衝突して破壊されないことになります。  
+一般的に無敵モード中の自機は半透明な表示や半透明で点滅表示がなされることが多いですね。これは、プレイヤーに無敵モード中であることをお知らせするためのゲームシステムからの視覚的なフィードバックです。  
+shipクラスのupdate関数に次の2行を追加しましょう。
+```
+    if(this.invulnerability>0){
+          this.invulnerability ;
+          this.setOpacity(255- this.getOpacity());
+      }
+```  

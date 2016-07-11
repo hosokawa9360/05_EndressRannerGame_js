@@ -102,6 +102,7 @@ var Ship = cc.Sprite.extend({
     this.ySpeed = 0; //宇宙船の垂直速度
     //宇宙船を操作するで追加した部分
     this.engineOn = false; //カスタム属性追加　宇宙船のエンジンのON OFF
+    this.invulnerability = 0; //無敵モード時間　初期値0
   },
   onEnter: function() {
     this.setPosition(60, 160);
@@ -112,6 +113,14 @@ var Ship = cc.Sprite.extend({
       this.ySpeed += gameThrust;
     }
     //ここまで
+
+    //無敵モード中の視覚効果
+    if (this.invulnerability > 0) {
+      this.invulnerability--;
+      this.setOpacity(255 - this.getOpacity());
+    }
+
+
     this.setPosition(this.getPosition().x, this.getPosition().y + this.ySpeed);
     this.ySpeed += gameGravity;
   }
@@ -133,20 +142,20 @@ var Asteroid = cc.Sprite.extend({
     //小惑星との衝突を判定する処理
     var shipBoundingBox = ship.getBoundingBox();
     var asteroidBoundingBox = this.getBoundingBox();
-		//rectIntersectsRectは２つの矩形が交わっているかチェックする
-    if (cc.rectIntersectsRect(shipBoundingBox, asteroidBoundingBox) ) {
-      gameLayer.removeAsteroid(this);//小惑星を削除する
+    //rectIntersectsRectは２つの矩形が交わっているかチェックする
+    if (cc.rectIntersectsRect(shipBoundingBox, asteroidBoundingBox) && ship.invulnerability == 0) {
+      gameLayer.removeAsteroid(this); //小惑星を削除する
       restartGame();
     }
-		//画面の外にでた小惑星を消去する処理
+    //画面の外にでた小惑星を消去する処理
     if (this.getPosition().x < -50) {
       gameLayer.removeAsteroid(this)
     }
   }
 });
 //宇宙船を元の位置に戻して、宇宙船の変数を初期化する
-function restartGame(){
-    ship.ySpeed = 0;
-    ship.setPosition(ship.getPosition().x,160);
-    ship.invulnerability=100;
+function restartGame() {
+  ship.ySpeed = 0;
+  ship.setPosition(ship.getPosition().x, 160);
+  ship.invulnerability = 100;
 }
