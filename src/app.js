@@ -148,5 +148,4 @@ var Asteroid = cc.Sprite.extend({
 function restartGame(){
     ship.ySpeed = 0;
     ship.setPosition(ship.getPosition().x,160);
-    ship.invulnerability=100;
 }
