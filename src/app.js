@@ -28,9 +28,7 @@ var game = cc.Layer.extend({
   init: function() {
     this._super();
     size = cc.director.getWinSize();
-    // mylabel = cc.LabelTTF.create("GO!", "Arial", "32");
-    // mylabel.setPosition(size.width / 2, size.height / 2);
-    // this.addChild(mylabel);
+
 
     //宇宙船を操作するで追加した部分
     cc.eventManager.addListener({
