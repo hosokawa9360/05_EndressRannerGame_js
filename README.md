@@ -374,3 +374,123 @@ if (this.engineOn) {
   emitter.setPosition(this.getPosition().x - 250, this.getPosition().y);
 }
 ```
+### 課題画像とBGMとSEを追加した
+res2フォルダの中に　`res2.zip`があるのでダウンロードして解答
+resフォルダでは`bgm_main.mp3`、`se_surprize.mp3`を追加したのでダウンロードすること
+
+### BGMと効果音の再生
+グローバル変数にオーディオエンジンオブジェクトを保管するための変数`audioEngine`を定義しましょう。   
+```
+var emitter;
+//オーディオ再生エンジン
+var　 audioEngine;
+```
+次に　gameScene　で　オーディオ再生エンジン`audioEngine`をインスタンスします  
+```
+//音楽再生エンジン
+audioEngine = cc.audioEngine;
+```
+その次には、BGMを再生する関数　`playMusic(res.bgm_main, true);`を実行します。  
+第2引数のtrueはループ再生をonにするという意味です。
+```
+//bgm再生されていないなら再生する
+if (!audioEngine.isMusicPlaying()) {
+  //audioEngine.playMusic("res/bgm_main.mp3", true);
+  audioEngine.playMusic(res.bgm_main, true);
+}
+```
+小惑星に衝突したときには、効果音を再生します。  
+`audioEngine.playEffect(res.se_bang);`  
+
+さらに、bgmの再生を一時ストップします。
+```
+if (audioEngine.isMusicPlaying()) {
+  audioEngine.stopMusic();
+}
+```
+
+```
+if (cc.rectIntersectsRect(shipBoundingBox, asteroidBoundingBox) && ship.invulnerability == 0) {
+  gameLayer.removeAsteroid(this); //小惑星を削除する
+
+  //効果音を再生する
+//  audioEngine.playEffect("res/se_bang.mp3");
+  audioEngine.playEffect(res.se_bang);
+  //bgmの再生をとめる
+  if (audioEngine.isMusicPlaying()) {
+    audioEngine.stopMusic();
+  }
+  restartGame();
+}
+```
+その後　`restartGame()`関数でレジューム再生します。
+```
+function restartGame() {
+  ship.ySpeed = 0;
+  ship.setPosition(ship.getPosition().x, 160);
+  ship.invulnerability = 100;
+  //bgmリスタート
+  if (!audioEngine.isMusicPlaying()) {
+    audioEngine.resumeMusic();
+  }
+}
+```
+音楽を再生する関数はほかにも様々ありますので試してみましょう。
+
+//BGMを鳴らす
+```
+if (audioEngine.isMusicPlaying()) {
+  audioEngine.playMusic(URL, true);
+}
+```
+//BGMを止める
+```
+if (audioEngine.isMusicPlaying()) {
+  audioEngine.stopMusic();
+}
+```
+//BGMを再生をリスタートする
+```
+if (!audioEngine.isMusicPlaying()) {
+  audioEngine.resumeMusic();
+}
+```
+
+//効果音を再生する
+```
+  audioEngine.playEffect(URL);
+```
+//効果音のボリュームを上げる
+```
+  audioEngine.setEffectsVolume(audioEngine.getEffectsVolume() + 0.3);
+  audioEngine.setEffectsVolume(audioEngine.getEffectsVolume() - 0.3);
+```
+//bgmのボリュームを上げる・下げる
+```
+  audioEngine.setMusicVolume(audioEngine.getMusicVolume() + 0.1);
+  audioEngine.setMusicVolume(audioEngine.getMusicVolume() - 0.1);
+```
+
+
+
+## 夏休みの課題
+海底が名古屋湾で、前方から名古屋名物が流れてくるので、エビフライ操作して、キャッチするゲームを作成しなさい。  
+時々出てくる　障害物（ピンクのサンゴ）に3回ぶつかったらゲームオーバー  
+スコアを表示させて　名古屋名物をキャッチしたらポイントUPさせる
+名古屋名物によっては、重くなる、ポイントがあがる、画面外に押し出されるなどのオプションも考えください。  
+ゲームのオープニング画面、リザルト画面を実装してください。  
+`title.png`はオープニングロゴの例です。  
+
+背景のスクロールのルールは以下のとおり。  
+- ゲーム背景のスプライト `background.png` が最も奥でゆっくりスクロールする  
+- 背景用スプライトの前に岩山（`rock_above.png`と`rock_under.png`）を上と下に設置され、背景より多少早くスクロールする。  
+- さらに、手前に天井と地面の小石（`ceiling.png`と`land.png`)が岩山より多少早いスピードでスクロールする。  
+
+サンゴにぶつかったとき、地面にぶつかったときはエフェクトを出すとよい  
+（option）特別な名古屋名物をgetしたときもエフェクト出すとよいね  
+
+（option）エビちゃんが上下するときは、ときどき泡(`awa.png`)がでると視覚効果がある  
+
+エフェクトは自分で作る  
+Webサイトは [particle2dx](http://particle2dx.com/)  
+使い方は、　[particle2dxで作成したエフェクトをcocos2d-JSで再生する](http://blog.bokuweb.me/entry/2015/05/01/214055)  

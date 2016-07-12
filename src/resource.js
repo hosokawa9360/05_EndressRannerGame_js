@@ -3,8 +3,8 @@ var res = {
     ship_png : "res/ship.png",
     particle_png : "res/particle.png",
     asteroid_png : "res/asteroid.png",
-    bgm_main : "res/bgm_main.mp3 ",
-    se_surprize : "res/se_surprize.mp3"
+    bgm_main : "res/bgm_main.mp3",
+    se_bang : "res/se_bang.mp3"
 };
 
 var g_resources = [];

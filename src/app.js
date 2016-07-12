@@ -1,6 +1,7 @@
 //app.js
 
 var size;
+
 var mylabel;
 //背景スクロールで追加した部分
 var gameLayer;
@@ -11,24 +12,35 @@ var ship;
 var gameGravity = -0.05;
 //宇宙船を操作するで追加した部分 エンジンの推進力
 var gameThrust = 0.1;
-
+//パーティクル
+var emitter;
+var　 audioEngine;
 
 var gameScene = cc.Scene.extend({
+
   onEnter: function() {
-    //  var gradient = cc.LayerGradient.create(cc.color(0, 0, 0, 255), cc.color(0x46, 0x82, 0xB4, 255));
-    //  this.addChild(gradient);
     this._super();
+
     gameLayer = new game();
     gameLayer.init();
     this.addChild(gameLayer);
-  }
+    //音楽再生エンジン
+    audioEngine = cc.audioEngine;
+    //bgm再生
+    if (!audioEngine.isMusicPlaying()) {
+      //audioEngine.playMusic("res/bgm_main.mp3", true);
+      audioEngine.playMusic(res.bgm_main, true);
+    }
+  },
+
 });
+
 
 var game = cc.Layer.extend({
   init: function() {
     this._super();
     size = cc.director.getWinSize();
-
+    //BGMと効果音のエンジンを追加
 
     //宇宙船を操作するで追加した部分
     cc.eventManager.addListener({
@@ -54,11 +66,12 @@ var game = cc.Layer.extend({
     this.schedule(this.addAsteroid, 0.5);
     //ここからパーティクルの設定
     emitter = cc.ParticleSun.create();
-    this.addChild(emitter,1);
+    this.addChild(emitter, 1);
     var myTexture = cc.textureCache.addImage(res.particle_png);
     emitter.setTexture(myTexture);
     emitter.setStartSize(2);
     emitter.setEndSize(4);
+
   },
   update: function(dt) {
     //backgroundのscrollメソッドを呼び出す
@@ -73,8 +86,36 @@ var game = cc.Layer.extend({
   removeAsteroid: function(asteroid) {
     this.removeChild(asteroid);
   },
+  //BGMと効果音の関数を追加
+  /*
+  playSe: function() {
+    this.audioEngine.playEffect(res.se_surprize);
+  },
+  playBgm: function() {
+    if (!this.audioEngine.isMusicPlaying()) {
+      this.audioEngine.playMusic(res.bgm_main, true);
+    }
+  },
+  stopBgm: function() {
+    if (this.audioEngine.isMusicPlaying()) {
+      this.audioEngine.stopMusic();
+    }
+  },
+  bgmUp: function() {
+    this.audioEngine.setMusicVolume(this.audioEngine.getMusicVolume() + 0.1);
+  },
+  bgmDown: function() {
+    this.audioEngine.setMusicVolume(this.audioEngine.getMusicVolume() - 0.1);
+  },
+  seUp: function() {
+    this.audioEngine.setEffectsVolume(this.audioEngine.getEffectsVolume() + 0.1);
+  },
+  seDown: function() {
+    this.audioEngine.setEffectsVolume(this.audioEngine.getEffectsVolume() - 0.1);
+  }*/
 
 });
+
 //スクロール移動する背景クラス
 var ScrollingBG = cc.Sprite.extend({
   //ctorはコンストラクタ　クラスがインスタンスされたときに必ず実行される
@@ -121,7 +162,6 @@ var Ship = cc.Sprite.extend({
       //エンジンOffのときは画面外に配置
       emitter.setPosition(this.getPosition().x - 250, this.getPosition().y);
     }
-    //ここまで
 
     //無敵モード中の視覚効果
     if (this.invulnerability > 0) {
@@ -136,6 +176,7 @@ var Ship = cc.Sprite.extend({
     //宇宙船が画面外にでたら、リスタートさせる
     if (this.getPosition().y < 0 || this.getPosition().y > 320) {
       restartGame();
+
     }
   }
 });
@@ -159,6 +200,15 @@ var Asteroid = cc.Sprite.extend({
     //rectIntersectsRectは２つの矩形が交わっているかチェックする
     if (cc.rectIntersectsRect(shipBoundingBox, asteroidBoundingBox) && ship.invulnerability == 0) {
       gameLayer.removeAsteroid(this); //小惑星を削除する
+      //ボリュームを上げる
+      audioEngine.setEffectsVolume(audioEngine.getEffectsVolume() + 0.3);
+      //効果音を再生する
+    //  audioEngine.playEffect("res/se_bang.mp3");
+      audioEngine.playEffect(res.se_bang);
+      //bgmの再生をとめる
+      if (audioEngine.isMusicPlaying()) {
+        audioEngine.stopMusic();
+      }
       restartGame();
     }
     //画面の外にでた小惑星を消去する処理
@@ -172,4 +222,8 @@ function restartGame() {
   ship.ySpeed = 0;
   ship.setPosition(ship.getPosition().x, 160);
   ship.invulnerability = 100;
+  //bgmリスタート
+  if (!audioEngine.isMusicPlaying()) {
+    audioEngine.resumeMusic();
+  }
 }
