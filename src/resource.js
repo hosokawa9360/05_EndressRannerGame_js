@@ -1,10 +1,6 @@
 var res = {
-    background_png : "res/background.png",
-    ship_png : "res/ship.png",
-    particle_png : "res/particle.png",
-    asteroid_png : "res/asteroid.png",
-    bgm_main : "res/bgm_main.mp3",
-    se_bang : "res/se_bang.mp3"
+    HealTexture_png : "res/Heal_texture.png",
+    DotTexture_png : "res/Dot_texture.png",
 };
 
 var g_resources = [];
