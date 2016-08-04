@@ -1,18 +1,18 @@
 ### エンドレスランナーゲーム　宇宙船を操作し、危険な小惑星を避けるゲーム —
 
 ###### 課題実施状況確認 
-01 荒川(https://github.com/at313/05_EndressRannerGame_js/)[Ebi](https://at313.github.io/05_EndressRannerGame_js/)  
-02 石田 [github barian](https://github.com/barian/05_EndressRannerGame_js/) [Ebi](https://barian.github.io/05_EndressRannerGame_js/)    
-03 磯野 [github E-tiru](https://github.com/E-tiru/05_EndressRannerGame_js/) [Ebi]( https://E-tiru.github.io/05_EndressRannerGame_js/)    
-04 菅原 [github sugaha](https://github.com/sugaha/05_EndressRannerGame_js/) [Ebi]( https://sugaha.github.io/05_EndressRannerGame_js/) 
-05 高橋（竣） [github mocosyun](https://github.com/mocosyun/05_EndressRannerGame_js/)[Ebi]( https://mocosyun.github.io/05_EndressRannerGame_js/)   
-06 高橋（聖） [github yui0722](https://github.com/yui0722/05_EndressRannerGame_js/)[Ebi]( https://yui0722.github.io/05_EndressRannerGame_js/)
-07 高橋（雄）  [github tayuhi](https://github.com/tayuhi/05_EndressRannerGame_js/)[Ebi]( https://tayuhi.github.io/05_EndressRannerGame_js/)
-08 樋口       [github hkamu](https://github.com/hkamu/05_EndressRannerGame_js/)[Ebi]( https://hkamu.github.io/05_EndressRannerGame_js/)
-09 藤澤        [github toshikei](https://github.com/toshikei/05_EndressRannerGame_js/)[Ebi](https://toshikei.github.io/05_EndressRannerGame_js/)
-10 細田        [github anirori](https://github.com/anirori/05_EndressRannerGame_js/)[Ebi]( https://anirori.github.io/05_EndressRannerGame_js/)     
-11 堀井        [github Ryo779](https://github.com/Ryo779/05_EndressRannerGame_js/)[Ebi]( https://Ryo779.github.io/05_EndressRannerGame_js/)   
-12 松澤        [github MatuzawaGaku](https://github.com//05_EndressRannerGame_js/)[Ebi]( https://MatuzawaGaku.github.io/05_EndressRannerGame_js/)    
+[01 荒川 commit](https://github.com/at313/05_EndressRannerGame_js/commits/master) [at313.github.io](https://at313.github.io/05_EndressRannerGame_js/)
+[02 石田 commit](https://github.com/barian/05_EndressRannerGame_js/commits/master) [barian.github.io](https://barian.github.io/05_EndressRannerGame_js/)    
+[03 磯野commit](https://github.com/E-tiru/05_EndressRannerGame_js/commits/master) [E-tiru.github.io]( https://E-tiru.github.io/05_EndressRannerGame_js/)    
+[04 菅原 commit](https://github.com/sugaha/05_EndressRannerGame_js/commits/master) [sugaha.github.io]( https://sugaha.github.io/05_EndressRannerGame_js/) 
+[05 高竣 commit](https://github.com/mocosyun/05_EndressRannerGame_js/commits/master)[mocosyun.github.io]( https://mocosyun.github.io/05_EndressRannerGame_js/)   
+[06 高聖 commit](https://github.com/yui0722/05_EndressRannerGame_js/commits/master)[yui0722.github.io]( https://yui0722.github.io/05_EndressRannerGame_js/)
+[07 高雄 commit](https://github.com/tayuhi/05_EndressRannerGame_js/commits/master)[tayuhi.github.io]( https://tayuhi.github.io/05_EndressRannerGame_js/)
+[08 樋口 commit](https://github.com/hkamu/05_EndressRannerGame_js/commits/master)[hkamu.github.io]( https://hkamu.github.io/05_EndressRannerGame_js/)
+[09 藤澤](https://github.com/toshikei/05_EndressRannerGame_js/commits/master)[toshikei.github.io](https://toshikei.github.io/05_EndressRannerGame_js/)
+[10 細田](https://github.com/anirori/05_EndressRannerGame_js/commits/master)[anirori.github.io]( https://anirori.github.io/05_EndressRannerGame_js/)     
+[11 堀井](https://github.com/Ryo779/05_EndressRannerGame_js/commits/master)[Ryo779.github.io]( https://Ryo779.github.io/05_EndressRannerGame_js/)   
+[12 松澤](https://github.com/05_EndressRannerGame_js/commits/master)[MatuzawaGaku.github.io]( https://MatuzawaGaku.github.io/05_EndressRannerGame_js/)    
 
 #### first commit　　横向きの解像度に変更  
 - resouce.jsを編集  
