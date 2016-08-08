@@ -1,8 +1,8 @@
 ### エンドレスランナーゲーム　宇宙船を操作し、危険な小惑星を避けるゲーム —
 
 ###### 課題実施状況確認 
-[01 荒川 commit 2](https://github.com/at313/05_EndressRannerGame_js/commits/master)----[at313.github.io NG ](https://at313.github.io/05_EndressRannerGame_js/)  
-https://github.com/at313/05_EndressRannerGame_js/commits/gh-pages  
+[01 荒川 commit 2](https://github.com/at313/AgeAge_Ebihurai_Game/commits/master)----[at313.github.io NG ](https://at313.github.io/AgeAge_Ebihurai_Game/)  
+https://github.com/at313/AgeAge_Ebihurai_Game/commits/gh-pages  
 
 [02 石田 commit 3](https://github.com/barian/05_EndressRannerGame_js/commits/master)----[barian.github.io ](https://barian.github.io/05_EndressRannerGame_js/)  
 https://github.com/barian/05_EndressRannerGame_js/commits/gh-pages  
