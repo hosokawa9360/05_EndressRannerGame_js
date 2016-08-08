@@ -41,7 +41,7 @@ https://github.com/MatuzawaGaku/AgeAgeEbiflyGame/commits/gh-pages
 https://github.com/cocytus01/AgeAgeFriedShrimp_js/commits/gh-pages  
 
 [14 山谷 commit 1](https://github.com/aireiya/AgeAgeEbifryGame/commits/master)----[cocytus01.github.io OK]( https://aireiya.github.io/AgeAgeEbiflyGame/)   
-https://github.com/aireiya/AgeAgeEbifryGame/commits/gh-pages  
+https://github.com/aireiya/AgeAgeEbifryGame/commits/gh-pages 9commit!!!  
 
   
 #### first commit　　横向きの解像度に変更  
