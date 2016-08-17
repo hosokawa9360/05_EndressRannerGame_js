@@ -37,11 +37,11 @@ https://github.com/Ryo779/AgeAgeEbiflygame/commits/gh-pages
 [12 松澤 commit 2](https://github.com/MatuzawaGaku/AgeAgeEbiflyGame/commits/master)----[MatuzawaGaku.github.io OK]( https://MatuzawaGaku.github.io/AgeAgeEbiflyGame/)  
 https://github.com/MatuzawaGaku/AgeAgeEbiflyGame/commits/gh-pages  
 
-[13 山口 commit 4](https://github.com/cocytus01/AgeAgeFriedShrimp_js/commits/master)----[cocytus01.github.io OK]( https://cocytus01.github.io/AgeAgeEbiflyGame/)  
+[13 山口 commit 7](https://github.com/cocytus01/AgeAgeFriedShrimp_js/commits/master)----[cocytus01.github.io OK]( https://cocytus01.github.io/AgeAgeFriedShrimp_js/)  
 https://github.com/cocytus01/AgeAgeFriedShrimp_js/commits/gh-pages  
 
-[14 山谷 commit 1](https://github.com/aireiya/AgeAgeEbifryGame/commits/master)----[cocytus01.github.io OK]( https://aireiya.github.io/AgeAgeEbiflyGame/)   
-https://github.com/aireiya/AgeAgeEbifryGame/commits/gh-pages 9commit!!!  
+[14 山谷 commit 10](https://github.com/aireiya/AgeAgeEbifryGame/commits/master)----[aireiya.github.io OK]( https://aireiya.github.io/AgeAgeEbifryGame/)   
+https://github.com/aireiya/AgeAgeEbifryGame/commits/gh-pages 10 commit!!!  
 
   
 #### first commit　　横向きの解像度に変更  
