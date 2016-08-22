@@ -22,8 +22,8 @@ https://github.com/yui0722/AgeAgeEbiflyGame/commits/gh-pages
 [07 高雄 commit 3](https://github.com/tayuhi/AgeAgeEbiflyGame/commits/master)----[tayuhi.github.io]( https://tayuhi.github.io/AgeAgeEbiflyGame/)  
 https://github.com/tayuhi/AgeAgeEbiflyGame/commits/gh-pages  
 
-[08 樋口 commit 2](https://github.com/hkamu/06_ageageebihuryaGame.js/commits/master)----[hkamu.github.io]( https://hkamu.github.io/06_ageageebihuryaGame.js/)  
-https://github.com/hkamu/06_ageageebihuryaGame.js/commits/gh-pages  
+[08 樋口 commit 2](https://github.com/hkamu/07_ageageebihuryaGame.js/commits/master)----[hkamu.github.io]( https://hkamu.github.io/07_ageageebihuryaGame.js/)  
+https://github.com/hkamu/07_ageageebihuryaGame.js/commits/gh-pages  
 
 [09 藤澤 commit 2](https://github.com/toshikei/AgeageEbiflyGame/commits/master)----[toshikei.github.io](https://toshikei.github.io/AgeageEbiflyGame/)  
 https://github.com/toshikei/AgeageEbiflyGame/commits/gh-pages  
