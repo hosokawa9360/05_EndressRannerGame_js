@@ -1,28 +1,28 @@
 ### エンドレスランナーゲーム　宇宙船を操作し、危険な小惑星を避けるゲーム —
 
 ###### 課題実施状況確認 
-[01 荒川 commit 4](https://github.com/at313/AgeAge_Ebihurai_Game/commits/master)----[at313.github.io NG ](https://at313.github.io/AgeAge_Ebihurai_Game/)  
+[01 荒川 commit 6](https://github.com/at313/AgeAge_Ebihurai_Game/commits/master)----[at313.github.io NG ](https://at313.github.io/AgeAge_Ebihurai_Game/)  
 https://github.com/at313/AgeAge_Ebihurai_Game/commits/gh-pages  
 
 [02 石田 commit 3](https://github.com/barian/AgeAgeEbiflyGame/commits/master)----[barian.github.io ](https://barian.github.io/AgeAgeEbiflyGame/)  
 https://github.com/barian/AgeAgeEbiflyGame/commits/gh-pages  
 
-[03 磯野commit 6](https://github.com/E-tiru/06_AgeAgeEbiflyGame_js/commits/master)----[E-tiru.github.io]( https://E-tiru.github.io/06_AgeAgeEbiflyGame_js/)   
+[03 磯野commit 7](https://github.com/E-tiru/06_AgeAgeEbiflyGame_js/commits/master)----[E-tiru.github.io]( https://E-tiru.github.io/06_AgeAgeEbiflyGame_js/)   
 https://github.com/E-tiru/06_AgeAgeEbiflyGame_js/commits/gh-pages  
 
-[04 菅原 commit 3](https://github.com/sugaha/AgeAgeEbiflyGame/commits/master)----[sugaha.github.io]( https://sugaha.github.io/AgeAgeEbiflyGame/)   
+[04 菅原 commit 10](https://github.com/sugaha/AgeAgeEbiflyGame/commits/master)----[sugaha.github.io]( https://sugaha.github.io/AgeAgeEbiflyGame/)   
 https://github.com/sugaha/AgeAgeEbiflyGame/commits/h-pages  
 
 [05 高竣 commit 2](https://github.com/mocosyun/AgeAgeEbiflyGame/commits/master)----[mocosyun.github.io]( https://mocosyun.github.io/AgeAgeEbiflyGame/)  
 https://github.com/mocosyun/AgeAgeEbiflyGame/commits/gh-pages  
 
-[06 高聖 commit 2](https://github.com/yui0722/AgeAgeEbiflyGame/commits/master)----[yui0722.github.io]( https://yui0722.github.io/AgeAgeEbiflyGame/)  
+[06 高聖 commit 2 (gh-page 8 commit)](https://github.com/yui0722/AgeAgeEbiflyGame/commits/master)----[yui0722.github.io]( https://yui0722.github.io/AgeAgeEbiflyGame/)  
 https://github.com/yui0722/AgeAgeEbiflyGame/commits/gh-pages  
 
-[07 高雄 commit 3](https://github.com/tayuhi/AgeAgeEbiflyGame/commits/master)----[tayuhi.github.io]( https://tayuhi.github.io/AgeAgeEbiflyGame/)  
+[07 高雄 commit 3  (gh-page 11 commit)](https://github.com/tayuhi/AgeAgeEbiflyGame/commits/master)----[tayuhi.github.io]( https://tayuhi.github.io/AgeAgeEbiflyGame/)  
 https://github.com/tayuhi/AgeAgeEbiflyGame/commits/gh-pages  
 
-[08 樋口 commit 2](https://github.com/hkamu/07_ebiyarinaosi.js/commits/master)----[hkamu.github.io]( https://hkamu.github.io/07_ebiyarinaosi.js/)  
+[08 樋口 commit 8](https://github.com/hkamu/07_ebiyarinaosi.js/commits/master)----[hkamu.github.io]( https://hkamu.github.io/07_ebiyarinaosi.js/)  
 https://github.com/hkamu/07_ebiyarinaosi.js/commits/gh-pages  
 
 [09 藤澤 commit 2](https://github.com/toshikei/AgeageEbiflyGame/commits/master)----[toshikei.github.io](https://toshikei.github.io/AgeageEbiflyGame/)  
